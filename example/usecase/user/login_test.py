@@ -4,8 +4,8 @@
 import json
 import unittest
 
-from ...data.csv import get_data
-from ...base.run_test import inject, injectable, test
+from pydatetest.data.csv import get_data
+from pydatatest import inject, injectable, test
 
 data = get_data('src/data/csv/login.csv')
 

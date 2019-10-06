@@ -1,6 +1,4 @@
-import os
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 
-project_dir = os.path.abspath(
-    os.path.join(os.path.abspath(__file__), os.path.pardir, os.path.pardir))
-
-print(project_dir)
+from .common.run_test import test, inject, injectable
