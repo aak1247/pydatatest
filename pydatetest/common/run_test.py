@@ -77,3 +77,10 @@ def test_runner(func):
         func(*args, **kw)
 
     return decorator
+
+def run_test():
+    import unittest
+    test_suite = unittest.TestSuite()
+    for test in tests:
+        test_suite.addTest(unittest.makeSuite(test))
+    unittest.TextTestRunner().run(test_suite)
