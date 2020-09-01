@@ -4,8 +4,8 @@
 import json
 import unittest
 
-from pydatetest.data.csv import get_data
-from pydatatest import inject, injectable, test
+from pydatatest.data.csv import get_data
+from pydatatest.common.base import inject, injectable, test
 
 data = get_data('src/data/csv/login.csv')
 
@@ -14,7 +14,7 @@ data = get_data('src/data/csv/login.csv')
 @injectable(['passport', 'password'])
 class TestUserLogin(unittest.TestCase):
     def setUp(self):
-        print("登录测试开始\n")
+        print("login test start\n")
 
     @inject(data[0])
     def test_01(self):
@@ -25,7 +25,7 @@ class TestUserLogin(unittest.TestCase):
         self.assertEqual(self.password, '111111')
 
     def tearDown(self):
-        print("登录测试结束\n")
+        print("login test end\n")
 
 
 def main():
