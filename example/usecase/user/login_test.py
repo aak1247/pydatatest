@@ -4,15 +4,18 @@
 import json
 import unittest
 
-from pydatatest.data.csv import get_data
-from pydatatest.common.base import inject, injectable, test
+from usecase.runner import runner
 
-data = get_data('src/data/csv/login.csv')
+from pydatatest.data.csv import get_data
+from pydatatest.api import inject, inject_def, test, PyDataTestCase, run_with
+
+data = get_data('example/data/csv/login.csv')
 
 
 @test
-@injectable(['passport', 'password'])
-class TestUserLogin(unittest.TestCase):
+@inject_def(['passport', 'password'], session=True)
+@run_with(runner)
+class TestUserLogin(PyDataTestCase):
     def setUp(self):
         print("login test start\n")
 

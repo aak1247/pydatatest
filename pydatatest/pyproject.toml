@@ -10,7 +10,7 @@ python = "^3.6"
 pyyaml = "^5.1"
 
 [tool.poetry.dev-dependencies]
-yapf = "^0.28.0"
+
 
 [build-system]
 requires = ["poetry>=0.12"]
