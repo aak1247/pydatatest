@@ -1,15 +1,21 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
-    name= 'PyDataTest',
+    name= 'pydatatest',
     version= '1.0.0',
-    packages=['api', 'data', 'common'],
+    package_dir={"": "src"},
+    packages=find_packages('src'),
     # py_modules =['api', 'data', 'common'],
     author= 'aak1247',
     author_email='aak1247@126.com',
     url='https://github.com/aak1247/PyDataTest',
-    description= 'Data driven test framework'
+
+    description= 'Data driven test framework',
+
+    install_requires=[
+        "pyyaml"
+    ],
 )
