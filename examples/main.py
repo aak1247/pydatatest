@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from usecase.runner import runner
+from usecase.runner import myrunner
 
 
 
 def main():
-    print(runner)
-    runner.run()
+    print(myrunner)
+    myrunner.run()
     print("passed")
 
 

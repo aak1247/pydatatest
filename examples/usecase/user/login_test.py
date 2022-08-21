@@ -4,31 +4,51 @@
 import json
 import unittest
 
-from usecase.runner import runner
+from usecase.runner import myrunner
 
-from pydatatest.data.csv import get_data
+from pydatatest.util.csv import get_data
 from pydatatest.api import inject, inject_def, test, PyDataTestCase, run_with
 
 data = get_data('examples/data/csv/login.csv')
 
 @test
 @inject_def(['passport', 'password'], session=True)
-@run_with(runner)
+@run_with(myrunner)
 class TestUserLogin(PyDataTestCase):
-    def setUp(self):
-        print("login test start\n")
+    @classmethod
+    def before_all(cls):
+        print("before all test")
+
+    @classmethod
+    def after_all(cls):
+        print("after all test")
+        
+    def before_each(self):
+        print("before_each test")
+    
+    def after_each(self):
+        print("after_each test")
+
+    def before_each_data(self):
+        print("before_each_data test")
+    
+    def after_each_data(self):
+        print("after_each_data test")
+
 
     @inject(data[0])
     def test_01(self):
-        self.assertEqual(self.passport, 'hitest')
+        self.assertEqual(self.passport, 'username')
 
-    @inject(data[0])
+    @inject(data, multi=True)
     def test_02(self):
-        self.assertEqual(self.password, '111111')
+        print(self.passport)
+        print(self.password)
+        self.assertEqual(self.password, 'password')
 
-    def tearDown(self):
-        print("login test end\n")
-
+    @inject(["username", "password1"])
+    def test_03(self):
+        self.assertEqual(self.password, 'password')
 
 def main():
     unittest.main()

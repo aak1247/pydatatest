@@ -5,17 +5,17 @@
 This package is to provide use usable interfaces
 '''
 
-from common.testcase import PyDataTestCase
+from pydatatest.common.testcase import PyDataTestCase
 
-from common.inject import inject_def
-from common.inject import inject
-from common.inject import InjectError
+from pydatatest.common.inject import inject_def
+from pydatatest.common.inject import inject
+from pydatatest.common.inject import InjectError
 
 
-from common.runner import runner
-from common.runner import run_with
-from common.runner import test
-from common.runner import test_runner
+from pydatatest.common.runner import runner
+from pydatatest.common.runner import run_with
+from pydatatest.common.runner import test
+from pydatatest.common.runner import test_runner
 
 
 

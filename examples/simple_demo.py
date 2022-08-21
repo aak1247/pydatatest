@@ -1,7 +1,7 @@
 
 from pydatatest.api import runner
 
-from pydatatest.data.csv import get_data
+from pydatatest.util.csv import get_data
 from pydatatest.api import inject, inject_def, test, PyDataTestCase, run_with
 
 myrunner = runner()
@@ -31,7 +31,7 @@ class TestUserLogin(PyDataTestCase):
 def main():
     print(myrunner)
     myrunner.run()
-    print("passed")
+    print("finished")
 
 
 if __name__ == '__main__':

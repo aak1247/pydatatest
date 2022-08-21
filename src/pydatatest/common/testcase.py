@@ -17,6 +17,20 @@ class PyDataTestCase(unittest.TestCase):
         self._pydatatest_runner = None
         self._pydatatest_multi = False
         self._pydatatest_dataset = []
+
+    @classmethod
+    def before_all(cls):
+        '''
+        before all tests
+        '''
+        pass
+
+    @classmethod
+    def after_all(cls):
+        '''
+        after all tests
+        '''
+        pass
     
     def before_each(self):
         '''
@@ -46,28 +60,30 @@ class PyDataTestCase(unittest.TestCase):
         '''
         run a testcase method
         '''
-        e = None
         self.before_each()
+        e = None
         if result is not None:
             if hasattr(result, 'dots'):
                 result.dots = False
+
+        self.before_each_data()
+        super().run(result)
+        self.after_each_data()
+
         if (self._pydatatest_multi):
-            for i in len(self._pydatatest_dataset):
-                _inject_multi_to(self._pydatatest_dataset, self)
+            for i in range(len(self._pydatatest_dataset)):
                 self.before_each_data()
-                try:
-                    super().run(result)
-                except Exception as e:
-                    break
-                self.after_each_data()
-        else:
-            self.before_each_data()
-            try:
                 super().run(result)
-            except Exception as e:
-                pass
-            self.after_each_data()
+                self.after_each_data()
+        
         self.after_each()
         if e is not None:
             raise TestError(e)
 
+    @classmethod
+    def setUpClass(cls):
+        cls.before_all()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.after_all()
