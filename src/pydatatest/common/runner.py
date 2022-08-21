@@ -44,7 +44,7 @@ def runner(name = ""):
     return r
 
 
-def run_with(runner):
+def test_with(runner):
     '''
     declare a testcase that will run with a Runner
     '''
@@ -52,17 +52,9 @@ def run_with(runner):
         runner = runners.__getitem__(runner)
     def decorator(klass):
         klass._pydatatest_runner = runner
+        runner._pydatatest_tests.append(klass)
         return klass
     return decorator
-
-
-def test(klass):
-    '''
-    register a testcase class or method
-    '''
-    runner = klass._pydatatest_runner
-    runner._pydatatest_tests.append(klass)
-    return klass
 
 
 def test_runner(runner):

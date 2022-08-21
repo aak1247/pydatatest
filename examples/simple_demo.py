@@ -2,16 +2,16 @@
 from pydatatest.api import runner
 
 from pydatatest.util.csv import get_data
-from pydatatest.api import inject, inject_def, test, PyDataTestCase, run_with
+from pydatatest.api import inject, inject_def, test, PyDataTestCase, test_with
 
 myrunner = runner()
 
 data = get_data('examples/data/csv/login.csv')
 
 
-@test
+
 @inject_def(['passport', 'password'], session=True)
-@run_with(myrunner)
+@test_with(myrunner)
 class TestUserLogin(PyDataTestCase):
     def setUp(self):
         print("login test start\n")

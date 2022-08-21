@@ -13,7 +13,7 @@ from pydatatest.common.inject import InjectError
 
 
 from pydatatest.common.runner import runner
-from pydatatest.common.runner import run_with
+from pydatatest.common.runner import test_with
 from pydatatest.common.runner import test
 from pydatatest.common.runner import test_runner
 
@@ -22,7 +22,7 @@ from pydatatest.common.runner import test_runner
 # testcase = PyDataTestCase # a signle test case
 
 
-# def run_with():
+# def test_with():
 #     '''
 #     indicates the runner which will run current testcase\
 #     '''
