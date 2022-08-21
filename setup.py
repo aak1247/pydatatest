@@ -4,7 +4,7 @@ import os
 from setuptools import setup, find_packages
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    return open(os.path.join(os.path.dirname(__file__), fname), encoding='utf8').read()
 
 setup(
     name= 'pydatatest',
@@ -16,7 +16,7 @@ setup(
     author_email='aak1247@126.com',
     url='https://github.com/aak1247/PyDataTest',
     description= 'Data driven test framework',
-    long_description=read('README'),
+    long_description=read('README.md'),
     install_requires=[
         "pyyaml",
         #"requests", # optional, only if you want to use session, it is needed
