@@ -108,7 +108,7 @@ pipenv add pydatatest # with pipenv
 > 
 > 
 >   @inject(data, multi=True)
->   def test_02(self):
+>   def test_02(self): # this test will be run many times
 >       print(self.passport)
 >       print(self.password)
 >       self.assertEqual(self.password, 'password')
@@ -144,7 +144,7 @@ pipenv add pydatatest # with pipenv
 > 
 > Params:
 >   - ``data``: list like data, will be parsed according to its sequence (same as ``@inject_def``)
->   - ``multi``: if true, the data will be seen as list of many group of variable, and this test method will be run the same times as the length of the data. Each group of variable will be run once.
+>   - ``multi``: if true, the data will be seen as list of many groups of variables, and this test method will be run the same times as the length of the data. Each group of variable will be run once.
 # TODO
 - [ ] @depends_on: to run multicase pipeline automatically
 - [ ] @inject_yaml: to inject yaml data
