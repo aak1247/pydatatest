@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name= 'pydatatest',
-    version= '1.0.0',
+    version= '1.0.2',
     package_dir={"": "src"},
     packages=find_packages('src'),
     # py_modules =['api', 'data', 'common'],
@@ -17,6 +17,7 @@ setup(
     url='https://github.com/aak1247/PyDataTest',
     description= 'Data driven test framework',
     long_description=read('README.md'),
+    long_description_content_type='text/markdown',
     install_requires=[
         "pyyaml",
         #"requests", # optional, only if you want to use session, it is needed

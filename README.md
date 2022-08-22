@@ -51,6 +51,7 @@ pipenv add pydatatest # with pipenv
 
 `runner` 
 > A framework instance that will run all testcases
+> 
 > Example:
 > ```python
 > r = pydatatest.runner("my runner")
@@ -60,18 +61,20 @@ pipenv add pydatatest # with pipenv
 
 `PyDataTestCase`
 > Data test Instance
+> 
 > Attributes:
->   **session**: request session, can be used in many test method to share some state
->   **injected variables**: You can access it in your test method as self.variable_name(the name is as defined in your @inject_def)
+>   - **session**: request session, can be used in many test method to share some state
+>   - **injected variables**: You can access it in your test method as self.variable_name(the name is as defined in your @inject_def)
 >
 > Methods:
->   **before_all**: run before all cases
->   **after_all**: run after all cases
->   **before_each**: run before all run of every test method
->   **after_each**: run before all run of every test method
->   **before_each_data**: run before every run of every test method
->   **after_each_data**: run after every run of every test method
->   **test****: test case method, each method will be run several times accoding to the injected data
+>   - **before_all**: run before all cases
+>   - **after_all**: run after all cases
+>   - **before_each**: run before all run of every test method
+>   - **after_each**: run before all run of every test method
+>   - **before_each_data**: run before every run of every test method
+>   - **after_each_data**: run after every run of every test method
+>   - **test****: test case method, each method will be run several times accoding to the injected data
+> 
 >   You can also use the unittest api here, such as self.assertEqual, for more information, see [Assert methods](https://docs.python.org/3/library/unittest.html#assert-methods) and [unittest](https://docs.python.org/3/contents.html)
 >
 > Example:
@@ -117,8 +120,9 @@ pipenv add pydatatest # with pipenv
 
 ### @test_with
 > Register a testcase
+> 
 > Params:
->   runner: string or runner instance, you can use runner name to avoid loop dependency
+> - ``runner``: string or runner instance, you can use runner name to avoid loop dependency
 
 ### @inject_def and @inject
 > Example：
@@ -137,6 +141,7 @@ pipenv add pydatatest # with pipenv
 
 #### @inject
 > Inject data to a test method
+> 
 > Params:
 >   - ``data``: list like data, will be parsed according to its sequence (same as ``@inject_def``)
 >   - ``multi``: if true, the data will be seen as list of many group of variable, and this test method will be run the same times as the length of the data. Each group of variable will be run once.
