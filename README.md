@@ -1,12 +1,18 @@
 # PyDataTest
-Data driven python test framework
 
-# Document
-## Introduction
+数据驱动的Python测试框架
 
-Aim to provide a simple way to write testcase, especially when test same logic with different data input and output. So PyDataTest wrap unittest with a set of utilities to test with data.
+![PyPI](https://img.shields.io/pypi/v/pydatatest)
+![License](https://img.shields.io/github/license/aak1247/PyDataTest)
 
-## Install
+| [English](./README.en-US.md) | 简体中文 |
+
+# 文档
+## 简介
+
+旨在提供一种编写测试用例的简单方法，尤其是在使用不同的数据输入和输出测试相同的逻辑时。因此，PyDataTest 提供了一套工具用来基于数据进行测试。
+
+## 安装
 
 ```shell
 pip install pydatatest # with pip
@@ -14,17 +20,17 @@ poetry add pydatatest # or with poetry
 pipenv add pydatatest # with pipenv
 ```
 
-## Usage
-1. Get a runner instance
+## 使用
+1. 创建一个runner实例
    ```python
     runner = pydatatest.runner()
    ```
-2. Write a test case and inject data including input and output
+2. 编写一个测试用例并注入数据，包括输入和输出
     ```python
     data = [["abc","123"], ['aaa',"000000"]]
 
     @inject_def(['passport', 'password'], session=True)
-    @test_with(runner) # Register this testcase, also can use runner name, eg: @test_with("runner1")
+    @test_with(runner) # 注册用例，也可以通过runner名称进行注册, 如: @test_with("runner1")
     class TestUserLogin(PyDataTestCase):
         def setUp(self):
         print("login test start\n")
@@ -40,7 +46,7 @@ pipenv add pydatatest # with pipenv
         def tearDown(self):
             print("login test end\n")
     ```
-3. Run with PyDataTest
+3. 通过PyDataTest运行起来
     ```python
     runner.run()
     ```
@@ -50,34 +56,34 @@ pipenv add pydatatest # with pipenv
 ## API
 
 `runner` 
-> A framework instance that will run all testcases
+> 框架实例，用来运行所有的测试用例
 > 
 > Example:
 > ```python
 > r = pydatatest.runner("my runner")
-> r.add_test(testcase) # add a test case manually
-> r.run() # start test
+> r.add_test(testcase) # 手动添加一个测试用例
+> r.run() # 运行所有测试用例
 > ```
 
 `PyDataTestCase`
-> Data test Instance
+> 测试用例组，用来组织测试用例
 > 
-> Attributes:
->   - **session**: request session, can be used in many test method to share some state
->   - **injected variables**: You can access it in your test method as self.variable_name(the name is as defined in your @inject_def)
+> 属性:
+>   - **session**: 获取session, 可以用来在不同的用例方法之间传递数据和共享状态（尤其是HTTP的登录状态等）
+>   - **injected variables**: 可以在用例方法中通过 self.variable_name(通过@inject_def声明的变量名)来访问注入的数据
 >
-> Methods:
->   - **before_all**: run before all cases
->   - **after_all**: run after all cases
->   - **before_each**: run before all run of every test method
->   - **after_each**: run before all run of every test method
->   - **before_each_data**: run before every run of every test method
->   - **after_each_data**: run after every run of every test method
->   - **test****: test case method, each method will be run several times accoding to the injected data
+> 方法:
+>   - **before_all**: 在所有用例方法之前运行(只运行一次)
+>   - **after_all**: 在所有用例方法之后运行（只运行一次）
+>   - **before_each**: 在每个用例方法之前运行（对每个方法的多组数据只执行一次）
+>   - **after_each**: 在每个用例方法之后运行（对每个方法的多组数据只执行一次）
+>   - **before_each_data**: 在每组数据被执行前运行
+>   - **after_each_data**: 在每组数据被执行后运行
+>   - **test****: 测试用例方法, 以test开头的方法都会被认为是测试用例方法，可以通过@inject注入数据，将会根据注入数据的数量执行多次
 > 
->   You can also use the unittest api here, such as self.assertEqual, for more information, see [Assert methods](https://docs.python.org/3/library/unittest.html#assert-methods) and [unittest](https://docs.python.org/3/contents.html)
+>  在用例方法中可以使用``unittest``的``API``, 比如self.assertEqual, 详见 [Assert methods](https://docs.python.org/3/library/unittest.html#assert-methods) 和 [unittest](https://docs.python.org/3/contents.html)
 >
-> Example:
+> 样例:
 > ```python
 > @inject_def(['passport', 'password'], session=True)
 > @test_with(myrunner)
@@ -108,7 +114,7 @@ pipenv add pydatatest # with pipenv
 > 
 > 
 >   @inject(data, multi=True)
->   def test_02(self): # this test will be run many times
+>   def test_02(self): # 这条用例会被执行多次
 >       print(self.passport)
 >       print(self.password)
 >       self.assertEqual(self.password, 'password')
@@ -119,12 +125,13 @@ pipenv add pydatatest # with pipenv
 > ```
 
 ### @test_with
-> Register a testcase
+> 注册测试用例到runner的注解
 > 
 > Params:
-> - ``runner``: string or runner instance, you can use runner name to avoid loop dependency
+> - ``runner``: 字符串或runner实例, 如果是字符串则会从全局runner中查找，可以通过传入字符串来避免循环引用
 
 ### @inject_def and @inject
+> 数据定义和注入注解
 > Example：
 > 
 > ```python
@@ -132,20 +139,21 @@ pipenv add pydatatest # with pipenv
 > class TestCaseClass(PyDataTestCase):
 > @inject(["passport1", "password1"])
 > def test_01(self):
->   print(self.passport) # defined variable can be access here
+>   print(self.passport) # @inject_def中声明的变量
 #### @inject_def
-> Define inject data varibales
+> 定义要注入的数据变量
 > Params:
-> - ``variables``: injected data will be parsed according to the sequence of variables
-> - ``session``: if True means that this case will use request session
+> - ``variables``: 注入的数据将会根据变量的声明顺序进行解析
+> - ``session``: bool, 如果为True表示该用例将会启用request session, 详见 [requests](https://requests.readthedocs.io/en/master/user/advanced/#session-objects)
 
 #### @inject
-> Inject data to a test method
+> 注入数据到测试用例方法
 > 
 > Params:
->   - ``data``: list like data, will be parsed according to its sequence (same as ``@inject_def``)
->   - ``multi``: if true, the data will be seen as list of many groups of variables, and this test method will be run the same times as the length of the data. Each group of variable will be run once.
-# TODO
+>   - ``data``: list like的数据，将会按照顺序进行解析 (same as ``@inject_def``)
+>   - ``multi``: 如果为True, 则会将数据解析为多组数据，每组数据将会被执行一次
+
+# 待改进的地方
 - [ ] @depends_on: to run multicase pipeline automatically
 - [ ] @inject_yaml: to inject yaml data
 - [ ] @inject_csv: to inject csv data
