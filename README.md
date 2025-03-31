@@ -160,4 +160,24 @@ pipenv add pydatatest # with pipenv
 - [ ] @once: indicates that the test case should be run once
 - [ ] @expected: indicates that the test case should return expected output
 - [ ] @throws: indicates that the test case should throw specific exception
-- [ ] More corner case
+- [ ] More corner case 
+
+# 开发
+
+
+## 安装依赖
+```shell
+pyenv local 3.9.13
+poetry install
+```
+
+## 运行测试
+```shell
+cd examples
+poetry run python main.py
+```
+
+## 发布
+```shell
+poetry publish --build
+```

@@ -1,9 +1,17 @@
 [tool.poetry]
 name = "pydatatest"
-version = "0.1.0"
+version = "1.0.4"
 description = "Data driven python test framework"
 authors = ["aak1247 <aak1247@126.com>"]
+readme = "README.md"
 license = "MIT"
+homepage = "https://github.com/aak1247/PyDataTest"
+repository = "https://github.com/aak1247/PyDataTest"
+keywords = ["test", "data driven", "test framework"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
