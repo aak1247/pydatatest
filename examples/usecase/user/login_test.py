@@ -7,13 +7,13 @@ import unittest
 from usecase.runner import myrunner
 
 from pydatatest.util.csv import get_data
-from pydatatest.api import inject, inject_def, test, PyDataTestCase, test_with
+from pydatatest.api import inject, inject_def, PyDataTestCase, test_with
 
-data = get_data('examples/data/csv/login.csv')
+data = get_data('data/csv/login.csv')
 
 
-@inject_def(['passport', 'password'], session=True)
 @test_with(myrunner)
+@inject_def(['passport', 'password'], session=True)
 class TestUserLogin(PyDataTestCase):
     @classmethod
     def before_all(cls):

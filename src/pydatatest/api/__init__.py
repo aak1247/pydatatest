@@ -14,7 +14,6 @@ from pydatatest.common.inject import InjectError
 
 from pydatatest.common.runner import runner
 from pydatatest.common.runner import test_with
-from pydatatest.common.runner import test
 from pydatatest.common.runner import test_runner
 
 

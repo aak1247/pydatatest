@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name= 'pydatatest',
-    version= '1.0.4',
+    version= '1.0.6',
     package_dir={"": "src"},
     packages=find_packages('src'),
     # py_modules =['api', 'data', 'common'],

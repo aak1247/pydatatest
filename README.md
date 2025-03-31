@@ -29,8 +29,8 @@ pipenv add pydatatest # with pipenv
     ```python
     data = [["abc","123"], ['aaa',"000000"]]
 
-    @inject_def(['passport', 'password'], session=True)
     @test_with(runner) # 注册用例，也可以通过runner名称进行注册, 如: @test_with("runner1")
+    @inject_def(['passport', 'password'], session=True)
     class TestUserLogin(PyDataTestCase):
         def setUp(self):
         print("login test start\n")

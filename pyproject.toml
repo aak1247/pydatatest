@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydatatest"
-version = "1.0.4"
+version = "1.0.6"
 description = "Data driven python test framework"
 authors = ["aak1247 <aak1247@126.com>"]
 readme = "README.md"

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from common.inject import _inject_multi_to
+from pydatatest.common.inject import _inject_multi_to
 
 
 class TestError(Exception):
